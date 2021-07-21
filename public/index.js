@@ -6,13 +6,23 @@ const IOS_SAFARI_BANNER_ID = "safari-banner";
 const INSTALL_APP_BANNER_ID = "add-banner";
 const INSTALL_APP_BUTTON_ID = "add-banner-button";
 const BANNER_CLOSE_CLASS_NAME = "add-app-banner-close";
-
+const CLEAR_BANNER_HISTORY_PARAM = "pwa-clear-banner";
 let banner;
 let deferredPrompt;
 
 docReady(main());
 
 function main() {
+  // Just for development purpose
+  // If you testing on a device, you can pass the value of CLEAR_BANNER_HISTORY_PARAM=true as query param
+  // example ?pwa-clear-banner=true
+  const urlParams = new URLSearchParams(window.location.search);
+  const param = urlParams.get(CLEAR_BANNER_HISTORY_PARAM);
+  if (param) {
+    clearBannerHistory();
+  }
+  //
+
   // add event listner for close buttons
   addCloseHandlersForBanners();
 
@@ -142,7 +152,7 @@ function persistBannerDate() {
   }
 }
 
-function clearBannerDateFromLocalStorage() {
+function clearBannerHistory() {
   try {
     localStorage.removeItem(BANNER_LOCAL_STORAGE_KEY);
   } catch (error) {
