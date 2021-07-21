@@ -2,7 +2,11 @@ let deferredPrompt;
 
 const btnApp = document.getElementById("btn-app");
 
-console.log("Hi");
+if (isAddToHomeScreenSupported()) {
+  console.log("Supported");
+} else {
+  console.log("Not supported");
+}
 
 if (!navigator.serviceWorker.controller) {
   navigator.serviceWorker.register("/sw.js").then(function (reg) {
@@ -35,4 +39,8 @@ function handleInstallApp(e) {
     }
     deferredPrompt = null;
   });
+}
+
+function isAddToHomeScreenSupported() {
+  return "getInstalledRelatedApps" in window.navigator;
 }
