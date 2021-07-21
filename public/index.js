@@ -7,6 +7,7 @@ const INSTALL_APP_BANNER_ID = "add-banner";
 const INSTALL_APP_BUTTON_ID = "add-banner-button";
 const BANNER_CLOSE_CLASS_NAME = "add-app-banner-close";
 const CLEAR_BANNER_HISTORY_PARAM = "pwa-clear-banner";
+
 let banner;
 let deferredPrompt;
 
@@ -58,13 +59,6 @@ function isAddToHomeScreenSupported() {
 }
 
 function isSafariMobile() {
-  // return (
-  //   navigator.vendor &&
-  //   navigator.vendor.indexOf("Apple") > -1 &&
-  //   navigator.userAgent &&
-  //   navigator.userAgent.indexOf("CriOS") === -1 &&
-  //   navigator.userAgent.indexOf("FxiOS") === -1
-  // );
   const ua = window.navigator.userAgent;
   const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
   const webkit = !!ua.match(/WebKit/i);
