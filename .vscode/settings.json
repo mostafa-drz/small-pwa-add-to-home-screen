@@ -1,0 +1,7 @@
+{
+  "liveServer.settings.https": {
+    "enable": true, //set it true to enable the feature.
+    "cert": "/Users/mostafa/pwa/vscode_live_server.cert", //full path of the certificate
+    "key": "/Users/mostafa/pwa/vscode_live_server.key" //full path of the private key
+  }
+}
