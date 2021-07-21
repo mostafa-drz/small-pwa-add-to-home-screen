@@ -1,5 +1,6 @@
 const BANNER_LOCAL_STORAGE_KEY = "ADD_TO_HOME_SCREEN_BANNER";
-const BANNER_INTERVAL_MIL_SECONDS = 10 * 60 * 60 * 24 * 1000;
+// Days * hours * mins * seconds * 1000
+const BANNER_INTERVAL_MIL_SECONDS = 10 * 24 * 60 * 60 * 1000;
 const SERVICE_WORKER_PATH = "./sw.js";
 const IOS_SAFARI_BANNER_ID = "safari-banner";
 const INSTALL_APP_BANNER_ID = "add-banner";
@@ -12,6 +13,9 @@ let deferredPrompt;
 docReady(main());
 
 function main() {
+  // add event listner for close buttons
+  addCloseHandlersForBanners();
+
   // Check to see if add to home screen is supported
   const safariMobile = isSafariMobile();
   if (!isAddToHomeScreenSupported()) {
@@ -27,9 +31,6 @@ function main() {
     console.log("A2HS not supported");
     return false;
   }
-
-  // add event listner for close buttons
-  addCloseHandlersForBanners();
 
   // install service worker first
   installServiceWorker(SERVICE_WORKER_PATH);
@@ -155,8 +156,8 @@ function closeBannerHandler(e) {
 }
 
 function addCloseHandlersForBanners() {
-  const elements = document.querySelectorAll(`.${BANNER_CLOSE_CLASS_NAME}`);
-  elements.forEach(function (element) {
+  const elements = document.getElementsByClassName(BANNER_CLOSE_CLASS_NAME);
+  Array.from(elements).forEach(function (element) {
     element.addEventListener("click", closeBannerHandler);
   });
 }
