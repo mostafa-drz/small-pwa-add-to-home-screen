@@ -1,7 +1,8 @@
 (function () {
   const BANNER_LOCAL_STORAGE_KEY = "ADD_TO_HOME_SCREEN_BANNER";
   // Days * hours * mins * seconds * 1000
-  const BANNER_INTERVAL_MIL_SECONDS = 10 * 24 * 60 * 60 * 1000;
+  // const BANNER_INTERVAL_MIL_SECONDS = 10 * 24 * 60 * 60 * 1000;
+  const BANNER_INTERVAL_MIL_SECONDS = 10 * 1000;
   const SERVICE_WORKER_PATH = "./sw.js";
   const IOS_SAFARI_BANNER_ID = "safari-banner";
   const INSTALL_APP_BANNER_ID = "add-banner";
