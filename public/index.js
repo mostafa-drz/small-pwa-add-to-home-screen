@@ -25,6 +25,9 @@
     }
     //
 
+    // install service worker first
+    installServiceWorker(SERVICE_WORKER_PATH);
+
     // add event listner for close buttons
     addCloseHandlersForBanners();
 
@@ -43,9 +46,6 @@
       console.log("A2HS not supported");
       return false;
     }
-
-    // install service worker first
-    installServiceWorker(SERVICE_WORKER_PATH);
 
     // stop the default behaviour
     window.addEventListener("beforeinstallprompt", beforeInstallHandler);
